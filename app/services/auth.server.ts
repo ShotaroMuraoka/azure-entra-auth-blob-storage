@@ -1,7 +1,7 @@
 // app/services/auth.server.ts
-import {MicrosoftStrategy} from "remix-auth-microsoft";
-import {Authenticator} from "remix-auth";
-import {sessionStorage} from "~/services/session.server";
+import { MicrosoftStrategy } from "remix-auth-microsoft";
+import { Authenticator } from "remix-auth";
+import { sessionStorage } from "~/services/session.server";
 
 export let authenticator = new Authenticator(sessionStorage); //User is a custom user types you can define as you want
 
@@ -11,10 +11,15 @@ let microsoftStrategy = new MicrosoftStrategy(
     clientSecret: process.env.ENTRA_CLIENT_SECRET || "",
     redirectUri: process.env.ENTRA_REDIRECT_URI || "",
     tenantId: process.env.ENTRA_TENANT_ID || "",
-    scope: ["openid", "email", "profile", "https://storage.azure.com/user_impersonation",], // optional
+    scope: [
+      "openid",
+      "email",
+      "profile",
+      "https://storage.azure.com/user_impersonation",
+    ], // optional
     prompt: "login", // optional
   },
-  async ({accessToken, extraParams, profile}) => {
+  async ({ accessToken, extraParams, profile }) => {
     // Here you can fetch the user from database or return a user object based on profile
     // return {profile}
     // The returned object is stored in the session storage you are using by the authenticator
@@ -31,9 +36,8 @@ let microsoftStrategy = new MicrosoftStrategy(
     // If you use the email address to identify users and allow signing in from any tenant (`tenantId` is not set)
     // it opens up a possibility of spoofing users!
 
-
-    return {...profile, accessToken}
-  }
+    return { ...profile, accessToken };
+  },
 );
 
 authenticator.use(microsoftStrategy);

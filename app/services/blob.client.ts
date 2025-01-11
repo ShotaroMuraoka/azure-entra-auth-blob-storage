@@ -1,4 +1,4 @@
-import {BlobServiceClient} from "@azure/storage-blob";
+import { BlobServiceClient } from "@azure/storage-blob";
 
 export function createBlobServiceClient(accessToken, storageAccount) {
   const credential = {
@@ -12,7 +12,7 @@ export function createBlobServiceClient(accessToken, storageAccount) {
 
   const blobServiceClient = new BlobServiceClient(
     `https://${storageAccount}.blob.core.windows.net`,
-    credential
+    credential,
   );
 
   return blobServiceClient;
