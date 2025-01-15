@@ -14,10 +14,22 @@ export function action({ request }: ActionFunctionArgs) {
 
 export default function Login() {
   return (
-    <div>
-      <Form method="post">
-        <button type="submit">Login</button>
-      </Form>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      {/* Login Card */}
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">
+          Login
+        </h1>
+        <Form method="post" className="flex justify-center">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Login
+          </button>
+        </Form>
+      </div>
     </div>
   );
+
 }
