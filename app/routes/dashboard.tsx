@@ -12,14 +12,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const accessToken = user.accessToken;
   const storageAccount = process.env.AZURE_STORAGE_ACCCOUNT;
-  return { accessToken, storageAccount };
+  const blobContainer = process.env.AZURE_BLOB_CONTAINER
+  return { accessToken, storageAccount, blobContainer };
 }
 export async function action({ request }: ActionFunctionArgs) {
   await authenticator.logout(request, { redirectTo: "/login" });
 }
 
 export default function Dashboard() {
-  const { accessToken, storageAccount } = useLoaderData();
+  const { accessToken, storageAccount, blobContainer } = useLoaderData();
   const [file, setFile] = useState<File | null>(null);
 
   const handleUpload = async () => {
@@ -31,8 +32,8 @@ export default function Dashboard() {
       accessToken,
       storageAccount,
     );
-    const containerClient = blobServiceClient.getContainerClient("azuresas");
 
+    const containerClient = blobServiceClient.getContainerClient(blobContainer);
     const blockBlobClient = containerClient.getBlockBlobClient(file.name);
 
     try {
