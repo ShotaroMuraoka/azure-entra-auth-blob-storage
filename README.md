@@ -4,7 +4,7 @@
 Microsoft Entra ID でログインして Azure Blob Storage にファイルをアップロードする Web アプリです。
 
 ## Usage
-詳細な利用方法は以下を参照してください。
+詳細な利用方法は以下を参照してください。  
 https://wptech.kiichiro.work/14rqfd1ec6/
 
 `.env` ファイルを作成します。
