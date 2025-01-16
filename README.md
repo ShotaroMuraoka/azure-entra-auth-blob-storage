@@ -1,40 +1,34 @@
-# Welcome to Remix!
+# azure-entra-auth-blob-storage
 
-- 📖 [Remix docs](https://remix.run/docs)
+## Overview
+Microsoft Entra ID でログインして Azure Blob Storage にファイルをアップロードする Web アプリです。
 
-## Development
+## Usage
+詳細な利用方法は以下を参照してください。
+https://wptech.kiichiro.work/14rqfd1ec6/
 
-Run the dev server:
-
-```shellscript
-npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
+`.env` ファイルを作成します。
 
 ```sh
-npm run build
+$ cp .env.example .env
+$ npm run dev
 ```
 
-Then run the app in production mode:
+`.env` に必要な値を入力します。
+
+```
+ENTRA_CLIENT_ID={クライアントID}
+ENTRA_CLIENT_SECRET={クライアントシークレット}
+ENTRA_REDIRECT_URI=http://localhost:5173/auth/microsoft/callback
+ENTRA_TENANT_ID={テナントID}
+AZURE_STORAGE_ACCCOUNT={ストレージアカウント名}
+AZURE_BLOB_CONTAINER={コンテナー名}
+```
+
+起動します。
 
 ```sh
-npm start
+$ npm run dev
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+`http://localhost:5173/login` にアクセスします。
